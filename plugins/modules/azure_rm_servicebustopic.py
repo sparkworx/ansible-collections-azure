@@ -215,7 +215,7 @@ class AzureRMServiceBusTopic(AzureRMModuleBase):
                 attribute_map = set(self.servicebus_models.SBTopic._attribute_map.keys()) - set(self.servicebus_models.SBTopic._validation.keys())
                 for attribute in attribute_map:
                     value = getattr(instance, attribute)
-                    if value and value != getattr(original, attribute):
+                    if value is not None and value != getattr(original, attribute):
                         changed = True
             if changed and not self.check_mode:
                 result = self.create_or_update(instance)

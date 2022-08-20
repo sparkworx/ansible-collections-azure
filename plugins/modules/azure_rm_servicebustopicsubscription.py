@@ -233,7 +233,7 @@ class AzureRMServiceSubscription(AzureRMModuleBase):
                 attribute_map = attribute_map_keys - validation_keys
                 for attribute in attribute_map:
                     value = getattr(instance, attribute)
-                    if value and value != getattr(original, attribute):
+                    if value is not None and value != getattr(original, attribute):
                         changed = True
             if changed and not self.check_mode:
                 result = self.create_or_update(instance)
